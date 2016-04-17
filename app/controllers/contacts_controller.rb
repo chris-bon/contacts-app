@@ -1,16 +1,27 @@
 class ContactsController < ApplicationController
   def index
   end
-  
-  def first_contact
-    @first_contact = Contact.all[0]
+
+  def new
   end
 
-  def second_contact
-    @second_contact = Contact.all[1]
+  def create
+    Contact.new(name: params[:name], 
+             address: params[:address],
+        phone_number: params[:phone_number]).save
   end
-  
-  def third_contact
-    @third_contact = Contact.all[2]
+
+  def show
+    @contact = Contact.find_by id: params[:id]
+  end
+
+  def edit
+    @contact = Contact.find_by id: params[:id]
+  end
+
+  def update
+    Contact.find_by(id: params[:id]).update(name: params[:name],
+                                         address: params[:address],
+                                    phone_number: params[:phone_number])
   end
 end
