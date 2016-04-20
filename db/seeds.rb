@@ -6,9 +6,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-100.times do
-  Contact.create!(name: Faker::Name.name,
-                  address: Faker::Address.city,
-                  phone_number: Faker::PhoneNumber.phone_number)
+Contact.all.each do |contact|
+  gps = Geocoder.coordinates contact.address
+  contact.update latitude: gps[0], longitude: gps[1]
+  sleep 2
 end
-

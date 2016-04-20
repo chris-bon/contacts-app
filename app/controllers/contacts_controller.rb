@@ -1,14 +1,9 @@
 class ContactsController < ApplicationController
-  def index
-  end
-
-  def new
-  end
-
   def create
-    Contact.new(name: params[:name], 
-             address: params[:address],
+    Contact.new(name: params[:name], address: params[:address],
         phone_number: params[:phone_number]).save
+    redirect_to "/contacts/#{contact.id}"
+    flash[:success] = 'New Contact Created!'
   end
 
   def show
@@ -20,8 +15,17 @@ class ContactsController < ApplicationController
   end
 
   def update
-    Contact.find_by(id: params[:id]).update(name: params[:name],
-                                         address: params[:address],
-                                    phone_number: params[:phone_number])
+    @contact = Contact.find_by id: params[:id]
+    @contact.update name: params[:name],
+                 address: params[:address],
+            phone_number: params[:phone_number]
+    redirect_to "/contacts/#{@contact.id}"
+    flash[:info] = 'Contact Updated!'
+  end
+
+  def destroy
+    Contact.find_by(id: params[:id]).destroy
+    redirect_to '/'
+    flash[:danger] = 'Contact Deleted!'
   end
 end

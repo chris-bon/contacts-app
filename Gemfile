@@ -16,6 +16,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'capistrano-rails', group: :development
 gem 'faker'
 gem 'seed_dump'
+gem 'geocoder'
 
 group :development, :test do
   gem 'byebug'

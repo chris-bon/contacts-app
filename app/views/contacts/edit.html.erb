@@ -1,4 +1,4 @@
-<h1>Update Contact></h1>
+<h1>Update Contact</h1>
 <%= form_tag "/contacts/#{@contact.id}", method: :patch do %>
   <div><%= label_tag :name, 'Name' %>
        <%= text_field_tag :name, @contact.name %></div>
